@@ -11,7 +11,6 @@ import messages from './i18n/messages';
 function App() {
   const [searchState, setSearchState] = useState({ searchKey: '' });
   const [language, setLanguage] = useState(LOCALES.SPANISH);
-
   const setSearchkey = (query) => {
     setSearchState({ searchKey: query });
   };

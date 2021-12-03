@@ -8,8 +8,9 @@ var productRouter = require('./routes/product');
 
 var app = express();
 
+
 app.use(logger('dev'));
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors({ origin: 'http://localhost:6380' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -22,4 +23,11 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'frontreact/build/index.html'));
 });
 
+app.listen(3001, '0.0.0.0', function (err) {
+  if (err) {
+   console.log(err)
+   return
+  }
+  console.log('Listening at http://localhost:' + 3001 + '\n')
+ })
 module.exports = app;
