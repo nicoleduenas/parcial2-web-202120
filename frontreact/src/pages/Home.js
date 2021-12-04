@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Card } from '../components/Card';
-
+import { FormattedMessage } from "react-intl";
 export const Home = ({ searchKey }) => {
   const [products, setProducts] = useState([]);
 
@@ -8,7 +8,6 @@ export const Home = ({ searchKey }) => {
     const fetchProducts = async () =>{
       const response = await fetch(' http://localhost:3001/api/products?q='.concat(searchKey))
       const productsData = await response.json()
-      console.log(productsData)
       setProducts(productsData)
     };
     fetchProducts()
@@ -17,10 +16,10 @@ export const Home = ({ searchKey }) => {
   return (
     <section id='home'>
       <div className='home-container'>
-        <h1>Gallery</h1>
+        <h1><FormattedMessage id="gallery" /></h1>
         <div className='home-card'>
           {products.map((e, i) => (
-            <Card name={e.name} picture={e.picture} price={e.price} isActive={e.isActive}  />
+            <Card key={i} name={e.name} picture={e.picture} price={e.price} isActive={e.isActive==='true'}  />
           ))}
         </div>
       </div>

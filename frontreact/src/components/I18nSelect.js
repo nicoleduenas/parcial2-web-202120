@@ -1,12 +1,16 @@
 import React from "react";
 import { LOCALES } from "../i18n/locales";
-import App from "../App";
-export const I18nSelect = () => {
-  var language = LOCALES.SPANISH
+import { useEffect, useState } from "react";
+export const I18nSelect = (props) => {
+  var [language, setLanguage] = useState(LOCALES.SPANISH)
+  useEffect(() => {
+    props.setLanguage(language);
+  }, [language, props]);
+  
   return (
-    <ul className="dropdown-menu" id="dropdown">
-      <li><a href="#English" onClick={language=LOCALES.ENGLISH}>English</a></li>
-      <li><a href="#Español" onClick={language=LOCALES.SPANISH}>Español</a></li>
+    <ul>
+      <li><button  onClick={() => setLanguage(LOCALES.ENGLISH)}>English</button></li>
+      <li><button  onClick={() => setLanguage(LOCALES.SPANISH)}>Español</button></li>
     </ul>
   );
 };
